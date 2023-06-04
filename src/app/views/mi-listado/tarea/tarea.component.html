@@ -1,0 +1,60 @@
+<div class="tarea">
+  <form [formGroup]="tareaForm" *ngIf="editMode; else viewTemplate">
+    <label>
+      Fecha:
+      <input type="date" formControlName="fecha">
+    </label>
+    <label>
+      Hora:
+      <input type="time" formControlName="hora">
+    </label>
+    <label>
+      Título:
+      <input type="text" formControlName="titulo">
+    </label>
+    <label>Detalle:<input type="text" formControlName="detalle">
+    </label>
+    <button type="button" (click)="updateTarea()">Actualizar</button>
+    <button type="button" (click)="cancelEdit()">Cancelar</button>
+    <label>
+      Pendiente:
+      <input type="radio" name="estado-{{estaTarea.id}}" value="pendiente" 
+             [checked]="estaTarea.estado === 'pendiente'"
+             (change)="updateEstado('pendiente')">
+    </label>
+    <label>
+      Realizada:
+      <input type="radio" name="estado-{{estaTarea.id}}" value="realizado" 
+             [checked]="estaTarea.estado === 'realizado'"
+             (change)="updateEstado('realizado')">
+    </label>
+    
+    
+  </form>
+
+  <ng-template #viewTemplate>
+    <p>Fecha: {{estaTarea.fecha}}</p>
+    <p>Hora: {{estaTarea.hora}}</p>
+    <p>Título: {{estaTarea.titulo}}</p>
+    <p>Detalle: {{estaTarea.detalle}}</p>
+
+    <label>
+      Pendiente:
+      <input type="radio" name="estado-{{estaTarea.id}}" value="pendiente" 
+             [checked]="estaTarea.estado === 'pendiente'"
+             (change)="updateEstado('pendiente')">
+    </label>
+    <label>
+      Realizada:
+      <input type="radio" name="estado-{{estaTarea.id}}" value="realizado"
+             [checked]="estaTarea.estado === 'realizado'"
+             (change)="updateEstado('realizado')">
+    </label>
+  
+    <div class="botones">
+      <button (click)="startEdit()">Editar</button>
+      <button (click)="deleteTarea.emit(estaTarea.id)">Borrar</button>
+    </div>
+</ng-template>
+
+</div>

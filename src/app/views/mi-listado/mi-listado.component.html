@@ -1,0 +1,46 @@
+<div id="listado">
+    <div class="header">
+        <h3> Tareas</h3>
+    </div>
+    <form [formGroup]="tareaForm" (ngSubmit)="addTarea()">
+        <label>
+            Fecha:
+            <input type="date" formControlName="fecha">
+        </label>
+        <label>
+            Hora:
+            <input type="time" formControlName="hora">
+        </label>
+        <label>
+            Título:
+            <input type="text" formControlName="titulo">
+        </label>
+        <label>
+            Detalle:
+            <input type="text" formControlName="detalle">
+        </label>
+
+        <button type="submit">{{ tareaAEditar ? 'Actualizar' : 'Guardar' }}</button>
+    </form>
+    <div class="options" [formGroup]="mostrarOpcion">
+        <div>
+            <input type="checkbox" formControlName="filtrarPorEstado">
+            <label>Filtrar por estado</label>
+            <select formControlName="estado">
+                <option value="realizado">Realizado</option>
+                <option value="pendiente">Pendiente</option>
+            </select>
+        </div>
+        <div>
+            <input type="checkbox" formControlName="ordenarPorInicio">
+            <label>Ordenar por inicio actividad</label>
+            <select formControlName="orden">
+                <option value="ascendente">Ascendente</option>
+                <option value="descendente">Descendente</option>
+            </select>
+        </div>
+    </div>
+
+    <app-tarea *ngFor="let tarea of getFiltradoYOrdenadoTareas()" [estaTarea]="tarea"
+        (deleteTarea)="deleteTarea($event)" (tareaUpdated)="onTareaUpdated($event)"></app-tarea>
+</div>

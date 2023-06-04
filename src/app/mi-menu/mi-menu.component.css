@@ -1,0 +1,13 @@
+#menu li { padding:10px; 
+    border-radius: 10px; 
+    display:inline-block;
+}
+#menu li:hover { 
+    background-color:lightcoral; 
+} 
+#menu { 
+    background-color:lightsalmon; 
+    width: 95%; height: 50px; 
+    margin:auto;
+    display:flex; align-items: center; 
+}
